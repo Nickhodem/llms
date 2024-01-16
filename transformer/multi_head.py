@@ -1,14 +1,14 @@
 import torch
 from torch import nn
 
-from attention.attention import Attention
-from attention.config import AttentionConfig
+from transformer.attention import Attention
+from transformer.config import AttentionConfig
 
 
 class MultiHeadAttention(nn.Module):
     def __init__(self, config: AttentionConfig):
         super().__init__()
-        self.heads = nn.ModuleList([Attention(config) for _ in range(config.n_heads)])
+        self.heads = nn.ModuleList([Attention(config) for _ in range(config.n_head)])
         self.proj = nn.Linear(config.n_embd, config.n_embd)
         self.dropout = nn.Dropout(config.dropout)
 
